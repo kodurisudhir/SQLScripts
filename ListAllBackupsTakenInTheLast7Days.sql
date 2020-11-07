@@ -1,12 +1,16 @@
 ---List all backups taken in the last 7 days
-Select A.database_name,A.backup_start_date,A.backup_finish_date, DateDiff(minute,A.backup_start_date,A.backup_finish_date) as [BackupTime_In_Minutes],
+Select A.database_name as [DB Name],
+       A.backup_start_date as [Backup Start Date],
+       A.backup_finish_date as [Backup Finish Date], 
+       DateDiff(second,A.backup_start_date,A.backup_finish_date) as [Time Taken in Minutes],
        Case Type when 'D' then 'Full' 
 	             when 'L' then 'Log' 
 				 when 'I' then 'Differential' else Type end as [Backup Type],
 	   physical_device_name as [Backup Location],
-	   compressed_backup_size as [CompressedBackupSize]
+	   cast(compressed_backup_size/1073741824.00 as decimal(30,3)) as [Compressed Backup Size in MBytes]
   from msdb.dbo.backupset A INNER JOIN
        msdb.dbo.backupmediafamily B on A.media_set_id=B.media_set_id
  Where is_snapshot=0 and
        backup_start_date>=DateAdd(Day,-7,cast(getdate() as date))
+
 
