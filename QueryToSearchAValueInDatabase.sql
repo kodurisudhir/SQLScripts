@@ -1,6 +1,6 @@
 Drop Table if exists #Output
 Drop Table if exists #Test
-Create Table #output ( [Schema] varchar(500),TableName varchar(500),[Column] varchar(500),ColumnValue varchar(2000))
+Create Table #Output ( [Schema] varchar(50),TableName varchar(50),[Column] varchar(50),ColumnValue varchar(2000))
 
 Declare @SearchValue varchar(200)
 Declare @TableName varchar(50)
@@ -27,7 +27,7 @@ Fetch next from db_cursor Into @TableSchema,@TableName, @ColumnName,@SQLString
 While @@FETCH_STATUS = 0
 Begin
 
-Insert Into #output
+Insert Into #Output
 Execute sp_executeSQL @SQLString
 
 Fetch next from db_cursor Into @TableSchema,@TableName, @ColumnName,@SQLString
@@ -36,6 +36,6 @@ End
 Close db_cursor
 Deallocate db_cursor
 
-Select * from #output
+Select * from #Output
 
  
