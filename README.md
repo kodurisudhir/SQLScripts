@@ -1,1 +1,1 @@
-# SQLBackups
+# SQLScripts
