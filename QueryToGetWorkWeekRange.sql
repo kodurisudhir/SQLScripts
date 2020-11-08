@@ -1,4 +1,4 @@
---This query returns work week range between a date range. Holidays are not excluded. Only Saturday and Sunday are excluded.
+--This query returns work week range between a date range. National Holidays are not excluded. Only Saturday and Sunday are excluded.
 Declare @BeginDate date = '01/01/2019';
 Declare @EndDate date = '12/31/2020';
 

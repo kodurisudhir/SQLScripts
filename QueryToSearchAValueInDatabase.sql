@@ -1,14 +1,17 @@
-Drop Table if exists #Output
-Drop Table if exists #Test
-Create Table #Output ( [Schema] varchar(50),TableName varchar(50),[Column] varchar(50),ColumnValue varchar(2000))
+--Enter value you want to search in the database
+--In the below script, we are searhing for database table\column that has 'Toyota'.
 
 Declare @SearchValue varchar(200)
+Set @SearchValue = 'Toyota';  ---Search Value
+
 Declare @TableName varchar(50)
 Declare @ColumnName varchar(50)
 Declare @TableSchema varchar(50)
 Declare @SQLString nvarchar(max)
  
-Set @SearchValue = 'Toyota';  ---Search Value
+Drop Table if exists #Output
+Drop Table if exists #Test
+Create Table #Output ( [Schema] varchar(50),TableName varchar(50),[Column] varchar(50),ColumnValue varchar(2000))
 
 Select Table_Schema as TableSchema,Table_Name as TableName,Column_Name as ColumnName,
        'Select top 1 '''+Table_Schema+''','''+Table_Name+''','''+Column_Name+''','+quotename(Column_Name)+' as [ColumnValue] '+ 
