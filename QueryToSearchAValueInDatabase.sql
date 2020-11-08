@@ -1,5 +1,5 @@
---Enter value you want to search in the database
---In the below script, we are searhing for database table\column that has 'Toyota'.
+--Enter the value you want to search in the database
+--In the below script, we are searching for database table\column that has value 'Toyota'.
 
 Declare @SearchValue varchar(200)
 Set @SearchValue = 'Toyota';  ---Search Value
