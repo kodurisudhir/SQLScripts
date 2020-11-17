@@ -4,19 +4,19 @@ CREATE OR ALTER FUNCTION dbo.udf_ConvertTimeZone
     @InputTimeZone VARCHAR(50),
 	@OutputTimeZone VARCHAR(50)
 )
-RETURNS VARCHAR(50)
+RETURNS VARCHAR(100)
 AS
 BEGIN
- 	  DECLARE @ResultEnterDate VARCHAR(50) = 'Enter Valid Time Zone'
+ 	  DECLARE @ResultEnterDate VARCHAR(100) = 'Enter valid time zone. Please refer sys.time_zone_info table for valid time zones.'
 	  DECLARE @ValidInputTimeZone BIT = 1;
 	  DECLARE @ValidOutputTimeZone BIT = 1;
 
-	  IF NOT EXISTS (SELECT 1 FROM Sys.Time_Zone_Info WHERE [Name] = @InputTimeZone)
+	  IF NOT EXISTS (SELECT 1 FROM sys.time_zone_info WHERE [Name] = @InputTimeZone)
 	  BEGIN
 	  SELECT @ValidInputTimeZone=0;
 	  END
 	  
-	  IF NOT EXISTS (SELECT 1 FROM Sys.Time_Zone_Info WHERE [Name] = @OutputTimeZone)
+	  IF NOT EXISTS (SELECT 1 FROM sys.time_zone_info WHERE [Name] = @OutputTimeZone)
 	  BEGIN
 	  SELECT @ValidOutputTimeZone=0;
 	  END
