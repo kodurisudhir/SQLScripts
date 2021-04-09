@@ -4,9 +4,9 @@ BEGIN
 DROP TABLE #SentEmails
 END
 
-IF OBJECT_ID(N'tempdb..#UnSentEmails') IS NOT NULL
+IF OBJECT_ID(N'tempdb..#UnsentEmails') IS NOT NULL
 BEGIN
-DROP TABLE #UnSentEmails
+DROP TABLE #UnsentEmails
 END
 
 
