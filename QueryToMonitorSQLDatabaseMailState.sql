@@ -1,8 +1,4 @@
 
-EXECUTE sp_configure 'show advanced options', 1;
-GO
-RECONFIGURE WITH OVERRIDE;
-
 IF OBJECT_ID(N'tempdb..#SentEmails') IS NOT NULL
 BEGIN
 DROP TABLE #SentEmails
@@ -89,7 +85,7 @@ SELECT CAST(@@SERVERNAME AS VARCHAR(200)) AS [Server Name],
 	   [D].[No of Sent Emails],
 	   D.[Last Sent At],
 	   E.[No of Unsent Emails],
-	   E.[Last UnSent At],
+	   E.[Last Unsent At],
 	   GETDATE() AS Logdate
 FROM
 (
@@ -102,6 +98,3 @@ FULL OUTER JOIN #DBMailQueueStatus C ON 1=1
 FULL OUTER JOIN #SentEmails D ON 1=1
 FULL OUTER JOIN #UnSentEmails E ON 1=1
 
-EXECUTE sp_configure 'show advanced options', 0;
-GO
-RECONFIGURE WITH OVERRIDE;
