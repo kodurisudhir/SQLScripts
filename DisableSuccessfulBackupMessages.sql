@@ -1,2 +1,2 @@
----Disable successful backup messages from the SQL Server error log.
+---Disable logging successful backup messages from the sql error log.
 DBCC TRACEON(3226,-1)
